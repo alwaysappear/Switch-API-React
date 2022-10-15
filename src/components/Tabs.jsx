@@ -20,6 +20,8 @@ const Tabs = ({ onSetActiveTab, onSetLoading }) => {
     ])
 
     const handleActiveBtn = id => {
+        const newTabs = tabs.map(tab => tab.id === id ? { ...tab, active: true } : { ...tab, active: false })
+        setTabs(newTabs)
         const activeBtn = tabs.filter(tab => tab.id === id)
         onSetActiveTab(activeBtn[0].title)
         onSetLoading(true)
@@ -28,7 +30,7 @@ const Tabs = ({ onSetActiveTab, onSetLoading }) => {
     return (
         <nav className="flex w-full justify-between p-5 gap-1">
             {tabs.map(tab => (
-                <button onClick={() => handleActiveBtn(tab.id)} key={tab.id}>{tab.title}</button>
+                <button className={tab.active ? 'active' : ''} onClick={() => handleActiveBtn(tab.id)} key={tab.id}>{tab.title}</button>
             ))}
         </nav>
     )
