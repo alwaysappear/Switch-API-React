@@ -1,7 +1,8 @@
-import { Tab } from 'bootstrap'
 import { useState, useEffect } from 'react'
 import ListContents from './components/ListContents'
 import Tabs from './components/Tabs'
+import Toggle from './components/Toggle'
+import TableContents from './components/TableContents'
 
 function App() {
   const API_URL = "https://jsonplaceholder.typicode.com"
@@ -10,6 +11,7 @@ function App() {
   const [request, setRequest] = useState(!fetchErr && [])
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState("")
+  const [toggleContents, setToggleCOntents] = useState(true);
 
   useEffect(() => {
     const apiRequest = async type => {
@@ -35,13 +37,18 @@ function App() {
     }, 1000)
   }, [acitveTab])
 
+  const handleToggle = () => {
+    setToggleCOntents(!toggleContents)
+  }
+
   return (
     <>
+      <Toggle handleToggle={handleToggle} />
       <Tabs onSetActiveTab={setActiveTab} onSetLoading={setIsLoading} />
       {!isLoading ?
         <div>
           {!fetchErr ?
-            <ListContents request={request} /> :
+            <div>{toggleContents ? <ListContents request={request} /> : <TableContents />}</div> :
             <p className="info">{err}</p>}
         </div> :
         <p className="info">Loading...</p>}
