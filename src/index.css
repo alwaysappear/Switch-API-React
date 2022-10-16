@@ -24,3 +24,10 @@ button:hover {
 button.active {
     @apply bg-black text-white;
 }
+
+table,
+tbody,
+td,
+tr {
+    @apply border-separate border border-slate-400;
+}

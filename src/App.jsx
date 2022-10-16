@@ -37,18 +37,18 @@ function App() {
     }, 1000)
   }, [acitveTab])
 
-  const handleToggle = () => {
-    setToggleCOntents(!toggleContents)
-  }
-
   return (
     <>
-      <Toggle handleToggle={handleToggle} />
+      <Toggle handleToggle={() => setToggleCOntents(!toggleContents)} />
       <Tabs onSetActiveTab={setActiveTab} onSetLoading={setIsLoading} />
       {!isLoading ?
         <div>
           {!fetchErr ?
-            <div>{toggleContents ? <ListContents request={request} /> : <TableContents />}</div> :
+            <div>
+              {toggleContents ?
+                <ListContents request={request} /> :
+                <TableContents items={request} />}
+            </div> :
             <p className="info">{err}</p>}
         </div> :
         <p className="info">Loading...</p>}
