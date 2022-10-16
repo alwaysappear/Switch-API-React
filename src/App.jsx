@@ -5,7 +5,7 @@ import Tabs from './components/Tabs'
 
 function App() {
   const API_URL = "https://jsonplaceholder.typicode.com"
-  const [acitveTab, setActiveTab] = useState("posts")
+  const [acitveTab, setActiveTab] = useState("users")
   const [fetchErr, setFetchErr] = useState(true)
   const [request, setRequest] = useState(!fetchErr && [])
   const [isLoading, setIsLoading] = useState(true)

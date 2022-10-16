@@ -4,12 +4,12 @@ const Tabs = ({ onSetActiveTab, onSetLoading }) => {
     const [tabs, setTabs] = useState([
         {
             id: 1,
-            title: "posts",
+            title: "users",
             active: true
         },
         {
             id: 2,
-            title: "users",
+            title: "posts",
             active: false
         },
         {
