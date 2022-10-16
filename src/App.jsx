@@ -17,9 +17,8 @@ function App() {
     const apiRequest = async type => {
       try {
         const res = await fetch(`${API_URL}/${type}`)
-        const data = await res.json()
         setFetchErr(false)
-        return data
+        return await res.json()
       } catch (err) {
         err.message = 'Please, reload the page.'
         setFetchErr(true)
@@ -32,6 +31,7 @@ function App() {
       setIsLoading(false)
       setRequest(fetchRequest)
     }
+
     setTimeout(() => {
       handleRequest(acitveTab)
     }, 1000)
